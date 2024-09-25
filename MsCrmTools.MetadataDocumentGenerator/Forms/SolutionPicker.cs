@@ -14,11 +14,11 @@ namespace MsCrmTools.MetadataDocumentGenerator.Forms
     public partial class SolutionPicker : Form
     {
         private readonly IOrganizationService innerService;
-        
+
         /// <summary>
-        /// 
+        /// Variable containing the solutions found in the environment.
         /// </summary>
-        private List<Entity> environmentSolutions;
+        private List<Entity> environmentSolutions = new List<Entity>();
         public SolutionPicker(IOrganizationService service)
         {
             InitializeComponent();
@@ -29,10 +29,10 @@ namespace MsCrmTools.MetadataDocumentGenerator.Forms
         public List<Entity> SelectedSolutions { get; set; } = new List<Entity>();
 
         /// <summary>
-        /// 
+        /// Method that filters solutions that contain part of the text entered in the textbox. The search is made when there are more than three characters entered in the textbox.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
         private void filtersolution_KeyPress(object sender, EventArgs e)
         {
             var tempList = new List<Entity>();
@@ -130,6 +130,7 @@ namespace MsCrmTools.MetadataDocumentGenerator.Forms
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            //Initializes the environmentSolutions property with the list of solutions found in the environment. It will be used to filter the solutions.
             environmentSolutions = ((EntityCollection)e.Result).Entities.ToList();
 
             foreach (Entity solution in ((EntityCollection)e.Result).Entities)
@@ -141,7 +142,10 @@ namespace MsCrmTools.MetadataDocumentGenerator.Forms
 
                 lstSolutions.Items.Add(item);
             }
+            
+            //Displays the total number of solutions found.
             lbltotalsolutions.Text = $"{environmentSolutions.Count} - Solutions";
+            
             lstSolutions.Enabled = true;
             btnSolutionPickerValidate.Enabled = true;
         }
