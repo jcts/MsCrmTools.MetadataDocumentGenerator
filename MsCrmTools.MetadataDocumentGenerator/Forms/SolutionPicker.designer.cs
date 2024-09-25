@@ -103,7 +103,7 @@
             this.filtersolution.Name = "filtersolution";
             this.filtersolution.Size = new System.Drawing.Size(224, 20);
             this.filtersolution.TabIndex = 12;
-            this.filtersolution.TextChanged += new System.EventHandler(this.filtersolution_KeyPress);
+            this.filtersolution.TextChanged += new System.EventHandler(this.filtersolution_TextChanged);
             // 
             // lblHeader
             // 

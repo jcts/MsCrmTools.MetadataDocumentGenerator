@@ -33,7 +33,7 @@ namespace MsCrmTools.MetadataDocumentGenerator.Forms
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="e">EventArgs</param>
-        private void filtersolution_KeyPress(object sender, EventArgs e)
+        private void filtersolution_TextChanged(object sender, EventArgs e)
         {
             var tempList = new List<Entity>();
 
